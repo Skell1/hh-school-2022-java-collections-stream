@@ -24,10 +24,11 @@ public class Task6 {
     Map<Integer,Area> idToArea = areas.stream().collect(Collectors.toMap(Area::getId, Function.identity()));
     return persons.stream()
             .flatMap(person -> personAreaIds.get(person.getId()).stream()
-                            .map(areaId -> (linesConnector(person.getFirstName(),idToArea.get(areaId).getName()))))
+                    .map(areaId -> (dataConnector(person,idToArea.get(areaId)))))
                     .collect(Collectors.toSet());
   }
-  public static String linesConnector(String personName, String areaName) {
-      return personName + " - " + areaName;
+  public static String dataConnector(Person person, Area area) {
+    return person.getFirstName() + " - " + area.getName();
+
   }
 }
