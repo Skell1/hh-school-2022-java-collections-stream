@@ -17,6 +17,6 @@ public class Task7 {
             .map(Company::getVacancies)
             .flatMap(Collection::stream)
             .map(Vacancy::getTitle)
-            .toList());  }
-
+            .toList());
+  }
 }
