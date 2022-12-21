@@ -47,11 +47,11 @@ public class Task8 {
 
   // есть ли совпадающие в двух коллекциях персоны?
   public boolean hasSamePersons(Collection<Person> persons1, Collection<Person> persons2) {
-    return persons2.stream().anyMatch(persons1::contains); //Укорочена запись. Время работы метода O(n)
+    return persons2.stream().anyMatch(persons1::contains); //Укорочена запись. Время работы метода O(n^2), на сколько я понимаю, в случае если повторяющихся элементов не будет метод каждый раз будет проходить по коллекции до конца
   }
 
   //...
   public long countEven(Stream<Integer> numbers) {
-    return numbers.filter(num -> num % 2 == 0).count();  //Укорочена запись + меньше время выполнения и меньше использованной памяти
+    return numbers.filter(num -> num % 2 == 0).count();  //Укорочена запись + меньше время выполнения. Безопасный метод
   }
 }
