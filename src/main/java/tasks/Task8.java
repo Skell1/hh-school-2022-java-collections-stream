@@ -21,12 +21,9 @@ public class Task8 {
 
   //Не хотим выдывать апи нашу фальшивую персону, поэтому конвертим начиная со второй
   public List<String> getNames(List<Person> persons) {
-    if (persons.size() < 2) {
-      return Collections.emptyList();
-    }
     return persons.stream().skip(1)
             .map(Person::getFirstName)
-            .collect(Collectors.toList()); //Метод skip() вместо удаления из List ускорит выполнение метода и сделает его более понятным. Создаем stream, только если будет не пустой вывод
+            .collect(Collectors.toList()); //Метод skip() вместо удаления из List ускорит выполнение метода и сделает его более понятным
   }
 
   //ну и различные имена тоже хочется
@@ -50,15 +47,11 @@ public class Task8 {
 
   // есть ли совпадающие в двух коллекциях персоны?
   public boolean hasSamePersons(Collection<Person> persons1, Collection<Person> persons2) {
-    Set<Person> notDuplicate = new HashSet<>();
-    return Stream.concat(persons1.stream(), persons2.stream())
-            .filter(n -> !notDuplicate.add(n))
-            .collect(Collectors.toSet())
-            .size() > 0;  //Укорочена запись. Время работы метода O(n)
+    return persons2.stream().anyMatch(persons1::contains); //Укорочена запись. Время работы метода O(n)
   }
 
   //...
   public long countEven(Stream<Integer> numbers) {
-    return numbers.filter(num -> num % 2 == 0).count();  //Укорочена запись
+    return numbers.filter(num -> num % 2 == 0).count();  //Укорочена запись + меньше время выполнения и меньше использованной памяти
   }
 }
