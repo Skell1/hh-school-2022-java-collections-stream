@@ -21,10 +21,13 @@ public class Task6 {
   public static Set<String> getPersonDescriptions(Collection<Person> persons,
                                                   Map<Integer, Set<Integer>> personAreaIds,
                                                   Collection<Area> areas) {
+    Map<Integer,Area> idToArea = areas.stream().collect(Collectors.toMap(Area::getId, Function.identity()));
     return persons.stream()
             .flatMap(person -> personAreaIds.get(person.getId()).stream()
-                    .map(areaId -> (person.getFirstName() + " - " + areas.stream()
-                            .collect(Collectors.toMap(Area::getId, Function.identity()))
-                            .get(areaId).getName())))
-            .collect(Collectors.toSet());  }
+                    .map(areaId -> (linesConnector(person.getFirstName(),idToArea.get(areaId).getName()))))
+            .collect(Collectors.toSet());
+  }
+  public static String linesConnector(String personName, String areaName) {
+    return personName + " - " + areaName;
+  }
 }
