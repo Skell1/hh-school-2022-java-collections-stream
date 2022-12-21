@@ -29,5 +29,6 @@ public class Task6 {
   }
   public static String dataConnector(Person person, Area area) {
     return person.getFirstName() + " - " + area.getName();
+
   }
 }

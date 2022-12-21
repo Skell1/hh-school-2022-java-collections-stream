@@ -50,10 +50,12 @@ public class Task8 {
     HashSet<Person> persons1HashSet = new HashSet<>(persons1);
     return persons2.stream().anyMatch(persons1HashSet::contains); //Укорочена запись. Преобразуя одну из коллекций в HashSet, время выполнения сократится. скорость contains для HashSet О(1)
     // return !Collections.disjoint(new HashSet(persons1), persons2);  //2 вариант
+
   }
 
   //...
   public long countEven(Stream<Integer> numbers) {
     return numbers.filter(num -> num % 2 == 0).count();  //Укорочена запись + меньше время выполнения. Безопасный метод
+
   }
 }
